@@ -1,104 +1,233 @@
+
+
 # 🌐 ProofStell Frontend
 
-User interface for the ProofStell decentralized document verification platform.
+User interface for the **ProofStell decentralized document verification platform** built on Stellar.
 
 ---
 
-## 🌍 Overview
+# 🌍 Overview
 
-The **ProofStell Frontend** provides a clean and intuitive interface for users, institutions, and third parties to:
+The **ProofStell Frontend** is the primary entry point into the ProofStell ecosystem. It enables users, institutions, and verifiers to interact with on-chain document credentials in a simple and secure way.
 
-* Upload and verify documents
-* View issued credentials
-* Issue new credentials (for authorized issuers)
-* Connect Stellar wallets
+It abstracts blockchain complexity into a smooth user experience for:
 
-It acts as the entry point into the ProofStell ecosystem.
+* 📄 Document upload & verification
+* 🧾 Credential issuance & management
+* 🏫 Institutional credential signing
+* 🔐 Wallet-based authentication (no passwords required)
 
----
-
-## 🚀 Features
-
-### 📄 Document Verification
-
-* Upload a document
-* Automatically generate hash
-* Check authenticity on-chain
+All verification logic is anchored on the **Stellar blockchain via Soroban smart contracts**.
 
 ---
 
-### 📊 Credential Dashboard
+# 🚀 Features
 
-* View all credentials linked to a wallet
-* Track issued and received documents
+## 📄 Document Verification System
 
----
+Users can verify the authenticity of documents in seconds.
 
-### 🏫 Issuer Portal
+**Flow:**
 
-* Institutions can issue credentials
-* Assign documents to user wallets
+* Upload a document (PDF, image, or text file)
+* File is hashed using SHA-256 (client-side)
+* Hash is sent to backend / Soroban contract
+* On-chain record is checked for integrity match
+* Verification result is displayed instantly
 
----
+**Benefits:**
 
-### 🔐 Wallet Authentication
-
-* Connect using Stellar wallets (e.g. Freighter)
-* No usernames or passwords required
-
----
-
-## 🛠️ Tech Stack
-
-* Next.js
-* TailwindCSS
-* ShadCN UI
-* Stellar Wallet Kit
+* Tamper-proof verification
+* Instant authenticity check
+* Fully auditable on-chain history
 
 ---
 
-## 📁 Project Structure
+## 📊 Credential Dashboard
+
+A unified dashboard for all wallet-linked credentials.
+
+**Includes:**
+
+* All issued documents tied to wallet address
+* Verification status (valid / revoked / expired)
+* Issuer identity (institution or organization)
+* Timestamped issuance history
+* On-chain transaction references
+
+Users can easily track their digital identity footprint in the ecosystem.
+
+---
+
+## 🏫 Issuer Portal (Institutions)
+
+For verified organizations issuing credentials.
+
+**Capabilities:**
+
+* Issue digital certificates or documents
+* Link credentials to wallet addresses
+* Revoke or update credentials (if authorized)
+* View issuance history and analytics
+* Batch issue credentials for multiple users
+
+This transforms institutions into **on-chain trusted issuers**.
+
+---
+
+## 🔐 Wallet Authentication (Stellar Native)
+
+Authentication is fully decentralized.
+
+**Supported Wallets:**
+
+* Freighter Wallet
+* Stellar xBull (optional extension support)
+
+**Features:**
+
+* No email/password system
+* Signature-based login (SEP-0010 standard)
+* Session validation via wallet signature
+* Secure wallet identity binding
+
+---
+
+## 🧾 Credential Viewer
+
+Each credential includes:
+
+* Document hash
+* Issuer information
+* Issuance timestamp
+* Verification status
+* Blockchain transaction reference
+* Optional metadata (course, institution, certification type)
+
+---
+
+## 🔎 Verification Explorer
+
+Public-facing verification tool:
+
+* Paste document hash or upload file
+* Instantly check blockchain record
+* View issuer authenticity
+* Audit credential lifecycle
+
+---
+
+# 🛠️ Tech Stack
+
+| Layer         | Technology                       |
+| ------------- | -------------------------------- |
+| Framework     | Next.js (App Router)             |
+| Styling       | TailwindCSS                      |
+| UI System     | ShadCN UI                        |
+| Blockchain    | Stellar / Soroban                |
+| Wallet Auth   | Stellar Wallet Kit (Freighter)   |
+| State Mgmt    | React Query / Zustand (optional) |
+| File Handling | Client-side hashing (SHA-256)    |
+
+---
+
+# 📁 Project Structure
 
 ```bash
 src/
 ├── app/
-│   ├── dashboard/
-│   ├── verify/
-│   ├── issuer/
-│   └── documents/
+│   ├── dashboard/        # User credential dashboard
+│   ├── verify/           # Document verification page
+│   ├── issuer/           # Institution issuance portal
+│   ├── documents/        # Credential detail views
+│   └── layout.tsx
+│
 ├── components/
-├── hooks/
-├── lib/
-└── ui/
+│   ├── auth/             # Wallet authentication components
+│   ├── dashboard/        # Stats, cards, lists
+│   ├── verify/           # Upload + verification UI
+│   ├── issuer/           # Issuer tools
+│   └── shared/           # Reusable UI components
+│
+├── hooks/                # Custom React hooks
+├── lib/                  # API clients, helpers, blockchain utils
+├── utils/                # Hashing, formatting, validators
+└── ui/                   # Base UI components (ShadCN)
 ```
 
 ---
 
-## ⚙️ How It Works
+# ⚙️ System Architecture
 
-1. User uploads a document
-2. Frontend hashes the file
-3. Sends hash to backend
-4. Backend queries smart contract
-5. Result displayed to user
+```text
+User
+ │
+ ▼
+Frontend (Next.js)
+ │  - File upload
+ │  - SHA-256 hashing
+ │
+ ▼
+Backend API
+ │  - Validates request
+ │  - Queries Stellar / Soroban
+ │
+ ▼
+Stellar Blockchain
+ │  - Stores document hashes
+ │  - Verifies credential integrity
+ │
+ ▼
+Response returned
+ │
+ ▼
+Frontend displays verification result
+```
 
 ---
 
-## 🚀 Getting Started
+# 🔁 How It Works
 
-### Install dependencies
+### 📄 Document Verification Flow
+
+1. User uploads a document
+2. Frontend generates cryptographic hash
+3. Hash is sent to backend API
+4. Backend checks Soroban smart contract
+5. Contract returns match / mismatch
+6. UI displays verification result
+
+---
+
+### 🏫 Credential Issuance Flow
+
+1. Institution logs in via wallet
+2. Uploads credential metadata
+3. Backend stores IPFS / metadata hash
+4. Soroban contract records issuance
+5. Credential becomes publicly verifiable
+
+---
+
+# 🚀 Getting Started
+
+## 1. Install Dependencies
 
 ```bash
 npm install
 ```
 
-### Run development server
+---
+
+## 2. Run Development Server
 
 ```bash
 npm run dev
 ```
 
-### Open in browser
+---
+
+## 3. Open Application
 
 ```
 http://localhost:3000
@@ -106,22 +235,64 @@ http://localhost:3000
 
 ---
 
-## 🔐 Environment Variables
+# 🔐 Environment Variables
 
 ```env
-NEXT_PUBLIC_API_URL=
-NEXT_PUBLIC_SOROBAN_RPC=
+NEXT_PUBLIC_API_URL=http://localhost:4000
+NEXT_PUBLIC_SOROBAN_RPC=https://soroban-testnet.stellar.org
 NEXT_PUBLIC_STELLAR_NETWORK=testnet
+NEXT_PUBLIC_WALLET_CONNECT=true
 ```
 
 ---
 
-## 🎯 Goals
+# 🎯 Goals
 
-* Provide simple UX for blockchain verification
-* Enable non-technical users to interact with Web3
-* Make document verification fast and intuitive
+* Make blockchain verification **invisible to users**
+* Provide a **simple Web2-like UX for Web3 credentials**
+* Enable institutions to issue **tamper-proof digital documents**
+* Build a **global verification layer for credentials**
 
 ---
 
-**ProofStell Frontend — Simple access to decentralized verification.**
+# 🧠 Design Principles
+
+* ⚡ Fast UX — instant verification feedback
+* 🔐 Trustless — no centralized authority for validation
+* 🌍 Accessible — usable by non-technical users
+* 📱 Responsive — works on mobile & desktop
+* 🧩 Modular — easy to extend with new credential types
+
+---
+
+# 🤝 Contribution
+
+We welcome contributions from developers, designers, and blockchain enthusiasts.
+
+### How to contribute:
+
+```bash
+git checkout -b feature/your-feature
+npm install
+npm run dev
+```
+
+* Follow consistent component structure
+* Keep UI reusable and modular
+* Ensure all blockchain calls are tested
+* Link PRs to issues
+
+---
+
+# 📜 License
+
+MIT License — open-source and community-driven.
+
+---
+
+# 🌐 ProofStell Frontend
+
+> Simple access to decentralized verification.
+> Built for trust. Powered by Stellar.
+
+---

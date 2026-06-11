@@ -1,91 +1,193 @@
-🕹️ Contributing to Proof-Stell Backend
-Welcome to the Proof-Stell Backend – the decentralized backend service powering Proof-Stell, a blockchain-powered whack-a-mole game built on StarkNet.
 
-Whether you're improving game logic, refining the leaderboard, or optimizing the player experience — your contributions bring Proof-Stell to life. Let's make Web3 gaming more fun, fair, and transparent together!
 
-⚙️ Setup Instructions
-1. Fork the Project
-Click the Fork button in the top right corner of the GitHub repo.
+# 🕹️ Contributing to Proof-Stell Backend
 
-2. Clone the Repository
+Welcome to the **Proof-Stell Backend** — the decentralized engine powering **Proof-Stell**, a blockchain-based Whack-a-Mole game built on **StarkNet**.
+
+This backend handles core gameplay logic, leaderboard computation, rewards distribution, and blockchain interactions. Every contribution helps make Web3 gaming more **transparent, fair, and fun**.
+
+Whether you're fixing bugs, improving performance, or building new game mechanics — you're helping shape the future of on-chain gaming.
+
+---
+
+# ⚙️ Getting Started
+
+## 1. Fork the Repository
+
+Click the **Fork** button at the top-right of the repository page on GitHub.
+
+---
+
+## 2. Clone Your Fork
+
+```bash
 git clone https://github.com/Proof-Stell/Proof-Stell-Backend.git
-
 cd Proof-Stell-Backend
+```
 
-4. Create a Feature Branch
+---
+
+## 3. Create a Feature Branch
+
+Always branch from `develop`:
+
+```bash
 git checkout -b feature/your-feature-name
+```
 
-5. Install Dependencies
+---
+
+## 4. Install Dependencies
+
+```bash
 npm install
+```
 
-6. Configure Environment Variables
-Create a .env file in the root directory using .env.example as a reference.
+---
 
-7. Start the Development Server
+## 5. Configure Environment Variables
+
+Create a `.env` file in the root directory:
+
+```bash
+cp .env.example .env
+```
+
+Fill in required configuration such as database URLs, JWT secrets, and StarkNet connection settings.
+
+---
+
+## 6. Start Development Server
+
+```bash
 npm run start:dev
-App runs locally at: http://localhost:3000
+```
 
-🛰️ Running Services
-🛢️ PostgreSQL Database (for storing user stats, game sessions, etc.)
+The server will be available at:
 
-📄 Swagger UI (for API documentation) — http://localhost:3000/api
+```
+http://localhost:3000
+```
 
-🌐 StarkNet Node connection for smart contract interaction
+---
 
-🎮 Game Modules You Can Contribute To
-🧠 Game Logic Engine: Manage rounds, timers, scoring
+# 🛰️ Running Services
 
-🏆 Leaderboard Module: On-chain/off-chain high scores
+When running locally, the backend connects to:
 
-👤 User Profiles: Wallet-linked player data
+* 🛢️ **PostgreSQL** — stores player profiles, scores, and sessions
+* 📄 **Swagger API Docs** — available at `http://localhost:3000/api`
+* 🌐 **StarkNet RPC Node** — handles smart contract interactions
+* 🎮 **Game Engine Modules** — core gameplay logic and scoring system
 
-🎁 Rewards Engine: Claiming & verifying daily challenge rewards
+---
 
-🔗 StarkNet Integration: Cairo-based contract interactions
+# 🎮 Areas You Can Contribute To
 
-💅 Code Style Guidelines
-Use idiomatic TypeScript
+## 🧠 Game Logic Engine
 
-Stick to NestJS's modular architecture
+* Mole spawn timing
+* Round progression rules
+* Score calculation system
 
-Enforce formatting with Prettier and lint with ESLint
+## 🏆 Leaderboard System
 
-Maintain consistent naming and directory structure
+* Real-time ranking updates
+* Anti-cheat validation
+* On-chain / off-chain sync improvements
 
-🌳 Git Workflow
-Branching Strategy
-main: Production-ready code
+## 👤 Player System
 
-develop: Active development & testing
+* Wallet-linked profiles
+* XP, levels, and progression logic
+* Match history tracking
 
-feature/*: New features
+## 🎁 Rewards Engine
 
-bugfix/*: Bug fixes
+* Daily challenge payouts
+* Claim verification logic
+* Smart contract reward triggers
 
-Conventional Commit Messages
-feat: New features (e.g. feat: add mole spawn logic)
+## 🔗 StarkNet Integration
 
-fix: Bug fixes (e.g. fix: leaderboard not updating)
+* Cairo contract calls
+* Transaction verification
+* Event listeners & indexing
 
-chore: Refactors & maintenance (e.g. chore: update deps)
+---
 
-Pull Requests
-Make sure the app builds without errors
+# 💅 Code Quality Standards
 
-Include relevant unit/integration tests
+We maintain a clean, scalable backend architecture:
 
-Keep PRs focused and scoped
+* Use **TypeScript (strict mode)**
+* Follow **NestJS modular structure**
+* Format code with **Prettier**
+* Enforce linting with **ESLint**
+* Keep business logic separated from controllers
 
-Link related issues in the description
+---
 
+# 🌳 Git Workflow
 
-🧠 Game Security
-Secure sensitive data via environment variables
+## Branch Strategy
 
-Use JWT-based auth for player sessions
+* `main` → Production-ready code
+* `develop` → Active integration branch
+* `feature/*` → New features
+* `bugfix/*` → Bug fixes
+* `hotfix/*` → Critical production fixes
 
-Validate all input with class-validator
+---
 
-🤝 Join the Proof-Stell Community
-Proof-Stell is more than just a game — it’s an experiment in decentralized fun. Contribute to smart contract-backed gaming where fairness, transparency, and rewards are all verifiable.
+## 🧾 Commit Convention
 
+We follow **Conventional Commits**:
+
+```bash
+feat: add mole spawn randomness system
+fix: correct leaderboard ranking bug
+chore: update dependencies
+refactor: simplify reward calculation logic
+```
+
+---
+
+## 🔁 Pull Request Guidelines
+
+Before submitting a PR:
+
+* Ensure the project builds successfully
+* Add or update tests where necessary
+* Keep PRs small and focused
+* Reference related issues
+* Include a clear description of changes
+
+---
+
+# 🧠 Security Guidelines
+
+Security is critical in a blockchain-based game:
+
+* Store secrets in `.env` only (never commit them)
+* Use **JWT authentication** for player sessions
+* Validate all inputs using `class-validator`
+* Prevent duplicate reward claims (anti-cheat logic)
+* Verify all StarkNet interactions on-chain
+
+---
+
+# 🤝 Join the Community
+
+**Proof-Stell is more than a game — it's a decentralized gaming experiment.**
+
+We’re building a system where:
+
+* 🎯 Skill is verifiable
+* 🧾 Scores are transparent
+* 💰 Rewards are on-chain
+* 🧠 Logic is open-source
+
+Join us in redefining how competitive gaming works in Web3.
+
+---
