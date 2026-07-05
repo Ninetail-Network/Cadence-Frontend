@@ -1,5 +1,18 @@
 # Cadence Frontend
 
+This is the user-facing app for **Cadence**, a Stellar-native platform where
+fans send creators anonymous messages, creators can respond by text or by
+having an AI voice agent call the fan back, and both sides build a daily
+on-chain check-in streak that pays out rewards. Full project context lives
+in the [top-level README](../README.md).
+
+This app is the only place a real person actually interacts with Cadence —
+everything the contracts and backend do (escrow, streak tracking, EchoCall
+orchestration) is invisible unless it's surfaced here clearly: an honest
+anonymous inbox for fans, a manageable queue and one-click voice-call
+trigger for creators, and a streak view simple enough that checking in
+becomes a genuine daily habit rather than a chore.
+
 Next.js application with two surfaces sharing one codebase: the **Fan
 Portal** (send anonymous messages, check in daily) and the **Creator
 Dashboard** (manage inbox, trigger EchoCall, track streak/monetization).
