@@ -1,8 +1,8 @@
 
 
-# 🕹️ Contributing to Proof-Stell Backend
+# 🕹️ Contributing to Cadence-frontend 
 
-Welcome to the **Proof-Stell Backend** — the decentralized engine powering **Proof-Stell**, a blockchain-based Whack-a-Mole game built on **StarkNet**.
+Welcome to the **Cadence-frontend ** — the decentralized engine powering **Cadence-frontend**, a blockchain-based Whack-a-Mole game built on **StarkNet**.
 
 This backend handles core gameplay logic, leaderboard computation, rewards distribution, and blockchain interactions. Every contribution helps make Web3 gaming more **transparent, fair, and fun**.
 
@@ -21,8 +21,8 @@ Click the **Fork** button at the top-right of the repository page on GitHub.
 ## 2. Clone Your Fork
 
 ```bash
-git clone https://github.com/Proof-Stell/Proof-Stell-Backend.git
-cd Proof-Stell-Backend
+git clone https://github.com/Cadence-frontend/Cadence-frontend-.git
+cd Cadence-frontend-
 ```
 
 ---
@@ -73,7 +73,7 @@ http://localhost:3000
 
 # 🛰️ Running Services
 
-When running locally, the backend connects to:
+When running locally, the  connects to:
 
 * 🛢️ **PostgreSQL** — stores player profiles, scores, and sessions
 * 📄 **Swagger API Docs** — available at `http://localhost:3000/api`
@@ -118,7 +118,7 @@ When running locally, the backend connects to:
 
 # 💅 Code Quality Standards
 
-We maintain a clean, scalable backend architecture:
+We maintain a clean, scalable  architecture:
 
 * Use **TypeScript (strict mode)**
 * Follow **NestJS modular structure**
@@ -231,7 +231,7 @@ Replace the `console.*` calls with a structured logger (e.g. pino) when moving t
 
 # 🤝 Join the Community
 
-**Proof-Stell is more than a game — it's a decentralized gaming experiment.**
+**Cadence-frontend is more than a game — it's a decentralized gaming experiment.**
 
 We’re building a system where:
 

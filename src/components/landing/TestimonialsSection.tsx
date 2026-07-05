@@ -16,7 +16,7 @@ const testimonials: Testimonial[] = [
   {
     id: "0x3f8a",
     quote:
-      "We issue hundreds of certificates a month. ProofStell eliminated fraud inquiries entirely — every employer can verify directly on-chain without calling us.",
+      "We issue hundreds of certificates a month. CadenceStell eliminated fraud inquiries entirely — every employer can verify directly on-chain without calling us.",
     name: "Dr. Amara Osei",
     role: "Registrar",
     org: "University of Accra",
@@ -38,7 +38,7 @@ const testimonials: Testimonial[] = [
   {
     id: "0x1d9e",
     quote:
-      "My credentials live in my Stellar wallet. I share a proof link with anyone who needs verification — no waiting, no middlemen, no data leaks.",
+      "My credentials live in my Stellar wallet. I share a Cadence link with anyone who needs verification — no waiting, no middlemen, no data leaks.",
     name: "Fatima Al-Rashid",
     role: "Compliance Officer",
     org: "Independent",
@@ -60,7 +60,7 @@ const testimonials: Testimonial[] = [
   {
     id: "0x9a3b",
     quote:
-      "Auditing compliance documents used to take days. With ProofStell's on-chain revocation registry, I can check any credential's status in real time.",
+      "Auditing compliance documents used to take days. With CadenceStell's on-chain revocation registry, I can check any credential's status in real time.",
     name: "Marcus Eze",
     role: "Lead Auditor",
     org: "TrustFrame Partners",

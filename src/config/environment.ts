@@ -5,7 +5,7 @@ const envSchema = z.object({
   NEXT_PUBLIC_SOROBAN_NETWORK_PASSPHRASE: z.string(),
   NEXT_PUBLIC_STELLAR_HORIZON_URL: z.string().url(),
 
-  NEXT_PUBLIC_PROOFSTELL_CONTRACT_ID: z.string().min(1),
+  NEXT_PUBLIC_CadenceSTELL_CONTRACT_ID: z.string().min(1),
   NEXT_PUBLIC_ISSUER_CONTRACT_ID: z.string().optional(),
 
   NEXT_PUBLIC_WALLET_PROVIDERS: z.string().optional(),

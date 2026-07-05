@@ -12,10 +12,10 @@ export const Navigation = ({ onLogin, onSignUp }: NavigationProps) => {
       <div className="flex items-center space-x-3 animate-slideInLeft">
         <Image
           src="https://readdy.ai/api/search-image?query=cute cartoon mole character with goggles and a mining helmet, digital art style, game mascot, purple background, high quality, detailed, vibrant colors&width=60&height=60&seq=logo1&orientation=squarish"
-          alt="Proof-Stell Logo"
+          alt="Cadence-frontend Logo"
           className="h-12 w-12 animate-float"
         />
-        <h1 className="text-2xl font-bold text-purple-300">Proof-Stell</h1>
+        <h1 className="text-2xl font-bold text-purple-300">Cadence-frontend</h1>
       </div>
       <nav className="hidden md:flex items-center space-x-6">
         <a

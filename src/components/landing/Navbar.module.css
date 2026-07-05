@@ -1,4 +1,4 @@
-.proofstellNav {
+.CadencestellNav {
   position: fixed;
   top: 0;
   left: 0;
@@ -8,14 +8,14 @@
   font-family: 'DM Mono', 'Courier New', monospace;
 }
 
-.proofstellNav.scrolled {
+.CadencestellNav.scrolled {
   background: rgb(6, 10, 16, 0.92);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid rgb(0, 220, 150, 0.12);
   box-shadow: 0 4px 32px rgb(0, 0, 0, 0.4);
 }
 
-.proofstellNav.top {
+.CadencestellNav.top {
   background: transparent;
 }
 

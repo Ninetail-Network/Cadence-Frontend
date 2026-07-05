@@ -42,7 +42,7 @@ export function Navbar({ onLoginClick }: NavbarProps) {
 
   return (
     <>
-      <header className={`${styles.proofstellNav} ${scrolled ? styles.scrolled : styles.top}`}>
+      <header className={`${styles.CadencestellNav} ${scrolled ? styles.scrolled : styles.top}`}>
         {/* Status ticker */}
         <div className={styles.statusBar}>
           <div className={styles.statusItem}>
@@ -66,7 +66,7 @@ export function Navbar({ onLoginClick }: NavbarProps) {
               <div className={styles.logoMarkInner} />
             </div>
             <span className={styles.logoText}>
-              Proof<span>Stell</span>
+              Cadence<span>Stell</span>
             </span>
           </Link>
 

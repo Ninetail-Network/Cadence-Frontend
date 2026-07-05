@@ -10,7 +10,7 @@ const VerificationSteps = [
   { id: "01", label: "Upload Document" },
   { id: "02", label: "Hash Generated" },
   { id: "03", label: "Chain Queried" },
-  { id: "04", label: "Proof Returned" },
+  { id: "04", label: "Cadence Returned" },
 ];
 
 export const HeroSection = ({ onSignUp }: HeroSectionProps) => {
@@ -74,8 +74,8 @@ export const HeroSection = ({ onSignUp }: HeroSectionProps) => {
               <span style={{ color: "#00dc96" }}>Anchored On-Chain.</span>
             </h1>
             <p className={styles.subheadline}>
-              ProofStell replaces centralized trust with cryptographic proof.
-              Institutions issue tamper-proof credentials directly to wallets.
+              CadenceStell replaces centralized trust with cryptographic Cadence.
+              Institutions issue tamper-Cadence credentials directly to wallets.
               Anyone can verify in seconds — no middleman, no databases.
             </p>
           </div>
@@ -93,7 +93,7 @@ export const HeroSection = ({ onSignUp }: HeroSectionProps) => {
           {/* Stats row */}
           <div className="flex gap-10 pt-4">
             {[
-              { value: "100%", label: "Tamper-Proof" },
+              { value: "100%", label: "Tamper-Cadence" },
               { value: "<3s", label: "Verify Time" },
               { value: "0", label: "Central Servers" },
             ].map((stat) => (
@@ -114,7 +114,7 @@ export const HeroSection = ({ onSignUp }: HeroSectionProps) => {
           {/* Card top bar */}
           <div className="flex items-center justify-between mb-6">
             <span className={styles.cardTopLabel}>
-              PROOF_VERIFICATION.SYS
+              Cadence_VERIFICATION.SYS
             </span>
             <div className="flex gap-2">
               {["#ff5f56", "#ffbd2e", "#27c93f"].map((c) => (

@@ -1,313 +1,97 @@
+# Cadence Frontend
 
+Next.js application with two surfaces sharing one codebase: the **Fan
+Portal** (send anonymous messages, check in daily) and the **Creator
+Dashboard** (manage inbox, trigger EchoCall, track streak/monetization).
 
-# 🌐 ProofStell Frontend
+## Stack
 
-User interface for the **ProofStell decentralized document verification platform** built on Stellar.
+- **Framework:** Next.js (App Router), TypeScript, Tailwind CSS
+- **Wallets:** Freighter, Albedo, xBull — via `@stellar/wallets-kit` (or
+  `@creit.tech/stellar-wallets-kit`)
+- **Data:** React Query for API calls, WebSocket subscription for live inbox
+- **Stellar:** `@stellar/stellar-sdk` in the browser for building/signing
+  transactions before sending to the backend for submission
 
----
+## Folder structure
 
-# 🌍 Overview
-
-The **ProofStell Frontend** is the primary entry point into the ProofStell ecosystem. It enables users, institutions, and verifiers to interact with on-chain document credentials in a simple and secure way.
-
-It abstracts blockchain complexity into a smooth user experience for:
-
-* 📄 Document upload & verification
-* 🧾 Credential issuance & management
-* 🏫 Institutional credential signing
-* 🔐 Wallet-based authentication (no passwords required)
-
-All verification logic is anchored on the **Stellar blockchain via Soroban smart contracts**.
-
----
-
-# 🚀 Features
-
-## 📄 Document Verification System
-
-Users can verify the authenticity of documents in seconds.
-
-**Flow:**
-
-* Upload a document (PDF, image, or text file)
-* File is hashed using SHA-256 (client-side)
-* Hash is sent to backend / Soroban contract
-* On-chain record is checked for integrity match
-* Verification result is displayed instantly
-
-**Benefits:**
-
-* Tamper-proof verification
-* Instant authenticity check
-* Fully auditable on-chain history
-
----
-
-## 📊 Credential Dashboard
-
-A unified dashboard for all wallet-linked credentials.
-
-**Includes:**
-
-* All issued documents tied to wallet address
-* Verification status (valid / revoked / expired)
-* Issuer identity (institution or organization)
-* Timestamped issuance history
-* On-chain transaction references
-
-Users can easily track their digital identity footprint in the ecosystem.
-
----
-
-## 🏫 Issuer Portal (Institutions)
-
-For verified organizations issuing credentials.
-
-**Capabilities:**
-
-* Issue digital certificates or documents
-* Link credentials to wallet addresses
-* Revoke or update credentials (if authorized)
-* View issuance history and analytics
-* Batch issue credentials for multiple users
-
-This transforms institutions into **on-chain trusted issuers**.
-
----
-
-## 🔐 Wallet Authentication (Stellar Native)
-
-Authentication is fully decentralized.
-
-**Supported Wallets:**
-
-* Freighter Wallet
-* Stellar xBull (optional extension support)
-
-**Features:**
-
-* No email/password system
-* Signature-based login (SEP-0010 standard)
-* Session validation via wallet signature
-* Secure wallet identity binding
-
----
-
-## 🧾 Credential Viewer
-
-Each credential includes:
-
-* Document hash
-* Issuer information
-* Issuance timestamp
-* Verification status
-* Blockchain transaction reference
-* Optional metadata (course, institution, certification type)
-
----
-
-## 🔎 Verification Explorer
-
-Public-facing verification tool:
-
-* Paste document hash or upload file
-* Instantly check blockchain record
-* View issuer authenticity
-* Audit credential lifecycle
-
----
-
-# 🛠️ Tech Stack
-
-| Layer         | Technology                       |
-| ------------- | -------------------------------- |
-| Framework     | Next.js (App Router)             |
-| Styling       | TailwindCSS                      |
-| UI System     | ShadCN UI                        |
-| Blockchain    | Stellar / Soroban                |
-| Wallet Auth   | Stellar Wallet Kit (Freighter)   |
-| State Mgmt    | React Query / Zustand (optional) |
-| File Handling | Client-side hashing (SHA-256)    |
-
----
-
-# 📁 Project Structure
-
-```bash
-src/
+```
+frontend/
 ├── app/
-│   ├── dashboard/        # User credential dashboard
-│   ├── verify/           # Document verification page
-│   ├── issuer/           # Institution issuance portal
-│   ├── documents/        # Credential detail views
+│   ├── (fan)/
+│   │   ├── page.tsx              # landing + wallet connect
+│   │   ├── send/page.tsx         # compose an anonymous Veil message
+│   │   └── pulse/page.tsx      # fan's own streak calendar + check-in button
+│   ├── (creator)/
+│   │   ├── dashboard/page.tsx    # inbox, filters (pending/answered/published)
+│   │   ├── message/[id]/page.tsx # message detail, reply, trigger EchoCall
+│   │   ├── calls/page.tsx        # EchoCall history + transcripts
+│   │   └── settings/page.tsx     # unlock pricing, subscription tiers
 │   └── layout.tsx
-│
 ├── components/
-│   ├── auth/             # Wallet authentication components
-│   ├── dashboard/        # Stats, cards, lists
-│   ├── verify/           # Upload + verification UI
-│   ├── issuer/           # Issuer tools
-│   └── shared/           # Reusable UI components
-│
-├── hooks/                # Custom React hooks
-├── lib/                  # API clients, helpers, blockchain utils
-├── utils/                # Hashing, formatting, validators
-└── ui/                   # Base UI components (ShadCN)
+│   ├── WalletConnectButton.tsx
+│   ├── StreakCalendar.tsx        # visual streak/Pulse heatmap
+│   ├── MessageCard.tsx
+│   ├── EchoCallModal.tsx         # prompt input + live call status
+│   └── UnlockPaywall.tsx
+├── lib/
+│   ├── stellar.ts                # tx-building helpers, wallet-kit wrapper
+│   ├── api.ts                    # typed fetch wrapper for backend
+│   └── hooks/
+│       ├── useStreak.ts
+│       ├── useInbox.ts
+│       └── useCall.ts
+└── package.json
 ```
 
----
+## Key screens
 
-# ⚙️ System Architecture
+### Fan Portal
+- **Send a message** — write anonymously, pick a creator, optionally attach
+  an unlock payment (amount + asset picker: XLM or USDC), sign with wallet,
+  submit.
+- **Pulse** — a GitHub-style streak heatmap; one-tap "Check in today"
+  button that builds and signs the `pulse.checkin` transaction.
 
-```text
-User
- │
- ▼
-Frontend (Next.js)
- │  - File upload
- │  - SHA-256 hashing
- │
- ▼
-Backend API
- │  - Validates request
- │  - Queries Stellar / Soroban
- │
- ▼
-Stellar Blockchain
- │  - Stores document hashes
- │  - Verifies credential integrity
- │
- ▼
-Response returned
- │
- ▼
-Frontend displays verification result
+### Creator Dashboard
+- **Inbox** — paginated list of pending/answered/published messages, sorted
+  optionally by fan streak length (reward loyal fans with faster answers).
+- **Message detail** — reply by text (releases escrow) or **Start
+  EchoCall**: a modal where the creator types a plain-English prompt (mirrors
+  Phone Claw's UX — phone number + instructions) and watches call status
+  live, then reviews the transcript once done.
+- **Pulse** — the creator's own streak, plus aggregate fan engagement
+  stats (active streaks, milestone payouts issued).
+- **Settings** — set per-message unlock price, subscription tiers, and
+  streak-based perks (e.g., "fans with 7+ day streaks skip the paywall").
+
+## Environment variables
+
+```
+NEXT_PUBLIC_API_URL=http://localhost:4000
+NEXT_PUBLIC_STELLAR_NETWORK=testnet
+NEXT_PUBLIC_SOROBAN_RPC_URL=https://soroban-testnet.stellar.org
+NEXT_PUBLIC_VEIL_ESCROW_CONTRACT_ID=...
+NEXT_PUBLIC_PULSE_CONTRACT_ID=...
+NEXT_PUBLIC_VEIL_TOKEN_CONTRACT_ID=...
 ```
 
----
-
-# 🔁 How It Works
-
-### 📄 Document Verification Flow
-
-1. User uploads a document
-2. Frontend generates cryptographic hash
-3. Hash is sent to backend API
-4. Backend checks Soroban smart contract
-5. Contract returns match / mismatch
-6. UI displays verification result
-
----
-
-### 🏫 Credential Issuance Flow
-
-1. Institution logs in via wallet
-2. Uploads credential metadata
-3. Backend stores IPFS / metadata hash
-4. Soroban contract records issuance
-5. Credential becomes publicly verifiable
-
----
-
-# 🚀 Getting Started
-
-## 1. Install Dependencies
+## Local development
 
 ```bash
-npm install
-```
-
----
-
-## 2. Run Development Server
-
-```bash
-npm run dev
-```
-
----
-
-## 3. Open Application
-
-```
-http://localhost:3000
-```
-
----
-
-# 🔐 Environment Variables
-
-Copy `.env.example` to `.env.local` and fill in the values. The project validates environment variables at build time and will fail the build when required values are missing or malformed.
-
-Minimum required values (see `.env.example`):
-
-- `NEXT_PUBLIC_SOROBAN_RPC_URL`
-- `NEXT_PUBLIC_SOROBAN_NETWORK_PASSPHRASE`
-- `NEXT_PUBLIC_STELLAR_HORIZON_URL`
-- `NEXT_PUBLIC_PROOFSTELL_CONTRACT_ID`
-
-Optional but useful:
-
-- `NEXT_PUBLIC_ISSUER_CONTRACT_ID`
-- `NEXT_PUBLIC_WALLET_PROVIDERS` (comma-separated providers like `freighter,xbull`)
-- `NEXT_PUBLIC_API_BASE_URL`
-- `NEXT_PUBLIC_API_KEY`
-
-Example:
-
-```env
-# copy .env.example -> .env.local and edit
-```
-
----
-
-# 🎯 Goals
-
-* Make blockchain verification **invisible to users**
-* Provide a **simple Web2-like UX for Web3 credentials**
-* Enable institutions to issue **tamper-proof digital documents**
-* Build a **global verification layer for credentials**
-
----
-
-# 🧠 Design Principles
-
-* ⚡ Fast UX — instant verification feedback
-* 🔐 Trustless — no centralized authority for validation
-* 🌍 Accessible — usable by non-technical users
-* 📱 Responsive — works on mobile & desktop
-* 🧩 Modular — easy to extend with new credential types
-
----
-
-# 🤝 Contribution
-
-We welcome contributions from developers, designers, and blockchain enthusiasts.
-
-### How to contribute:
-
-```bash
-git checkout -b feature/your-feature
+cd frontend
 npm install
 npm run dev
 ```
 
-* Follow consistent component structure
-* Keep UI reusable and modular
-* Ensure all blockchain calls are tested
-* Link PRs to issues
+## Design notes
 
----
-
-# 📜 License
-
-MIT License — open-source and community-driven.
-
----
-
-# 🌐 ProofStell Frontend
-
-> Simple access to decentralized verification.
-> Built for trust. Powered by Stellar.
-
----
+- Wallet signing happens **client-side only** — private keys never touch
+  the backend. The frontend builds an unsigned XDR transaction, the wallet
+  extension signs it, and the signed XDR is what gets POSTed to the backend
+  for submission to Soroban RPC.
+- The `StreakCalendar` component is shared between fan and creator views —
+  same data shape (`StreakInfo` from the contract), different framing copy.
+- EchoCall's prompt box intentionally mirrors Phone Claw's plain-English
+  style: a phone number field + a free-text instruction box, so creators
+  don't need to think in "scripts," just intent.

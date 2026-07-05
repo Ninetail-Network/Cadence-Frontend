@@ -5,7 +5,7 @@ import styles from "./FeaturesSection.module.css";
 const features = [
   {
     id: "01",
-    title: "On-Chain Document Proofs",
+    title: "On-Chain Document Cadences",
     tag: "CORE",
     description:
       "Institutions register documents by storing cryptographic hashes directly on Soroban smart contracts. Anyone can verify authenticity by comparing a file's hash with the immutable blockchain record.",
@@ -16,7 +16,7 @@ const features = [
     title: "Institutional Issuers",
     tag: "ISSUERS",
     description:
-      "Verified institutions — universities, employers, NGOs — issue credentials directly to users' Stellar wallets. Certificates, employment letters, compliance approvals: all tamper-proof.",
+      "Verified institutions — universities, employers, NGOs — issue credentials directly to users' Stellar wallets. Certificates, employment letters, compliance approvals: all tamper-Cadence.",
     accent: "#00dc96",
   },
   {
@@ -24,7 +24,7 @@ const features = [
     title: "Wallet-Based Identity",
     tag: "IDENTITY",
     description:
-      "No usernames. No passwords. Connect your Stellar wallet to receive credentials, share verifiable proofs, and manage all issued documents. Self-sovereign by design.",
+      "No usernames. No passwords. Connect your Stellar wallet to receive credentials, share verifiable Cadences, and manage all issued documents. Self-sovereign by design.",
     accent: "#00dc96",
   },
   {
@@ -48,7 +48,7 @@ const features = [
     title: "Trustless Infrastructure",
     tag: "PROTOCOL",
     description:
-      "Built entirely on Soroban smart contracts. No centralized databases, no trusted third parties. ProofStell anchors cryptographic proofs on Stellar — permanent and globally verifiable.",
+      "Built entirely on Soroban smart contracts. No centralized databases, no trusted third parties. CadenceStell anchors cryptographic Cadences on Stellar — permanent and globally verifiable.",
     accent: "#00dc96",
   },
 ];
